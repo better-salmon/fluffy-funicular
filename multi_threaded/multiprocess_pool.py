@@ -23,15 +23,26 @@ def count_lines_in_chunk(args):
     line_count = 0
     with open(filepath, "rb") as f:
         f.seek(start)
-        # If not at the beginning, skip to the next newline
+        
+        # If not at the beginning, skip any partial line at the start
         if start != 0:
-            f.readline()
+            # Check if we're at the start of a line (previous byte is newline)
+            f.seek(start - 1)
+            prev_byte = f.read(1)
+            f.seek(start)
+            
+            # If previous byte is not a newline, we're in the middle of a line
+            if prev_byte != b'\n':
+                skipped_line = f.readline()
+                # If the skipped line ends within our chunk, count it
+                if skipped_line and f.tell() < end:
+                    line_count += 1
 
-        while f.tell() < end:
-            line = f.readline()
-            if not line:
-                break
-            line_count += 1
+        # Read the chunk and count newlines
+        bytes_to_read = end - f.tell()
+        if bytes_to_read > 0:
+            chunk_data = f.read(bytes_to_read)
+            line_count += chunk_data.count(b'\n')
 
     return line_count
 
