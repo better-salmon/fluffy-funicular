@@ -1,3 +1,18 @@
+[project]
+name = "fluffy-funicular"
+version = "0.1.0"
+description = "A benchmarking repository for the 1 Billion Row Challenge (1BRC)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "black==23.12.1",
+    "flake8==7.0.0",
+    "isort==5.13.2",
+]
+
 [tool.black]
 line-length = 88
 target-version = ['py39', 'py310', 'py311']

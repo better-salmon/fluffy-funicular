@@ -23,9 +23,9 @@ fluffy-funicular/
 │   └── multiprocess_pool.py  # Multiprocessing Pool approach
 ├── generate_data.py          # Test data generator
 ├── benchmark.py              # Benchmark runner
-├── requirements.txt          # Linting/formatting dependencies
 ├── .flake8                   # Flake8 configuration
-└── pyproject.toml           # Black and isort configuration
+├── pyproject.toml           # Project configuration and dependencies
+└── uv.lock                  # Locked dependencies
 ```
 
 ## Setup
@@ -36,10 +36,12 @@ fluffy-funicular/
    cd fluffy-funicular
    ```
 
-2. **Install linting/formatting tools (optional):**
+2. **Install dependencies (optional, for linting/formatting):**
    ```bash
-   pip install -r requirements.txt
+   uv sync --all-extras
    ```
+   
+   This will create a virtual environment and install development tools (Black, Flake8, isort).
 
 ## Usage
 
@@ -98,13 +100,13 @@ This project uses industry-standard tools for code quality:
 
 ### Format code:
 ```bash
-black .
-isort .
+uv run black .
+uv run isort .
 ```
 
 ### Lint code:
 ```bash
-flake8 .
+uv run flake8 .
 ```
 
 ## Solutions Explained
