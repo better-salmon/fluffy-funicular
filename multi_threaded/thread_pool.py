@@ -36,7 +36,7 @@ def count_lines_in_chunk(filepath, start, end):
             if prev_byte != b'\n':
                 skipped_line = f.readline()
                 # If the skipped line ends within our chunk, count it
-                if skipped_line and f.tell() <= end:
+                if skipped_line and f.tell() < end:
                     line_count += 1
 
         # Read the chunk and count newlines
