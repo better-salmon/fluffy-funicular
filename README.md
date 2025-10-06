@@ -50,27 +50,46 @@ fluffy-funicular/
 Create a test file with a specified number of lines:
 
 ```bash
+# Using Python directly
 python generate_data.py <output_file> <num_lines>
+
+# Using uv
+uv run generate_data.py <output_file> <num_lines>
 ```
 
 Example:
 ```bash
+# Using Python directly
 python generate_data.py test_data.txt 1000000
+
+# Using uv
+uv run generate_data.py test_data.txt 1000000
 ```
 
 ### Run Individual Solutions
 
 **Single-threaded:**
 ```bash
+# Using Python directly
 python single_threaded/basic_readline.py <file_path>
 python single_threaded/buffered_read.py <file_path>
 python single_threaded/chunked_readlines.py <file_path>
+
+# Using uv
+uv run single_threaded/basic_readline.py <file_path>
+uv run single_threaded/buffered_read.py <file_path>
+uv run single_threaded/chunked_readlines.py <file_path>
 ```
 
 **Multi-threaded:**
 ```bash
+# Using Python directly
 python multi_threaded/thread_pool.py <file_path> [num_threads]
 python multi_threaded/multiprocess_pool.py <file_path> [num_processes]
+
+# Using uv
+uv run multi_threaded/thread_pool.py <file_path> [num_threads]
+uv run multi_threaded/multiprocess_pool.py <file_path> [num_processes]
 ```
 
 ### Run Benchmarks
@@ -78,16 +97,28 @@ python multi_threaded/multiprocess_pool.py <file_path> [num_processes]
 Compare all solutions on the same file:
 
 ```bash
+# Using Python directly
 python benchmark.py <file_path>
+
+# Using uv
+uv run benchmark.py <file_path>
 ```
 
 Example workflow:
 ```bash
+# Using Python directly
 # Generate 10 million line test file
 python generate_data.py test.txt 10000000
 
 # Run benchmarks
 python benchmark.py test.txt
+
+# Using uv
+# Generate 10 million line test file
+uv run generate_data.py test.txt 10000000
+
+# Run benchmarks
+uv run benchmark.py test.txt
 ```
 
 ## Linting and Formatting
